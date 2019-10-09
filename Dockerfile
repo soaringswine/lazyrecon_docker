@@ -38,13 +38,15 @@ RUN set -x \
         rename \
         nmap \
         wget \
+        curl \
         chromium-browser \
         locales \
     && apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/{apt,dpkg,cache,log}/ \
     && ulimit -n 2048 \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
+    && useradd -m lazyrecon_user
 ENV LC_ALL="en_US.UTF-8"
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
@@ -69,6 +71,11 @@ COPY --from=build /go/bin/amass /bin/amass
 COPY --from=build /go/bin/aquatone /bin/aquatone
 COPY --from=build /go/bin/httprobe /bin/httprobe
 COPY --from=build /go/bin/waybackurls /bin/waybackurls
+ENV UID="1000"
+ENV GID="1000"
+RUN set -x \
+    && chown -R ${UID}:${GID} $HOME
+USER lazyrecon_user
 #ENTRYPOINT [ "/bin/bash" ]
 WORKDIR $TOOLS/lazyrecon
 ENTRYPOINT ["bash", "./lazyrecon.sh"]
