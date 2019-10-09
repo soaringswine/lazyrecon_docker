@@ -1,9 +1,19 @@
+FROM golang:1.13.1-buster AS build
+RUN go get github.com/michenriksen/aquatone; exit 0
+RUN go get -u github.com/tomnomnom/httprobe; exit 0
+RUN go get github.com/tomnomnom/waybackurls; exit 0
+RUN go get github.com/OWASP/Amass; exit 0
+ENV GO111MODULE on
+WORKDIR /go/src/github.com/OWASP/Amass
+RUN go install ./...
+
 FROM ubuntu:18.04
-
 LABEL maintainer soaringswine
-
+ENV HOME="/home/lazyrecon_user"
+ENV TOOLS="$HOME/tools"
 RUN set -x \
-    && apt-get -y update && apt-get install -y --no-install-recommends --no-install-suggests \
+    && apt-get -y update \
+    && apt-get install -y --no-install-recommends --no-install-suggests \
         libcurl4-openssl-dev \
         libssl-dev \
         jq \
@@ -16,7 +26,6 @@ RUN set -x \
         build-essential \
         libgmp-dev \
         zlib1g-dev \
-        build-essential \
         libssl-dev \
         libffi-dev \
         python-dev \
@@ -27,11 +36,39 @@ RUN set -x \
         python-dnspython \
         git \
         rename \
-        xargs \
+        nmap \
+        wget \
+        chromium-browser \
+        locales \
     && apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/{apt,dpkg,cache,log}/ \
-    # Set ulimit just in case
-    && ulimit -n 2048
-
-ENTRYPOINT [ "/bin/bash" ]
+    && ulimit -n 2048 \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LC_ALL="en_US.UTF-8"
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US.UTF-8"
+WORKDIR $TOOLS
+RUN set -x \
+    && git clone https://github.com/aboul3la/Sublist3r.git \
+    && git clone https://github.com/maurosoria/dirsearch.git \
+    && git clone https://github.com/blechschmidt/massdns.git \
+    && git clone https://github.com/soaringswine/lazyrecon.git \
+    && pip3 install dnsgen
+WORKDIR $TOOLS/Sublist3r
+RUN set -x \
+    && pip install -r requirements.txt
+WORKDIR $TOOLS/massdns
+RUN set -x \
+    && make
+WORKDIR $TOOLS/SecLists/Discovery/DNS/
+RUN set -x \
+    && wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/dns-Jhaddix.txt \
+    && cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
+COPY --from=build /go/bin/amass /bin/amass
+COPY --from=build /go/bin/aquatone /bin/aquatone
+COPY --from=build /go/bin/httprobe /bin/httprobe
+COPY --from=build /go/bin/waybackurls /bin/waybackurls
+#ENTRYPOINT [ "/bin/bash" ]
+WORKDIR $TOOLS/lazyrecon
+ENTRYPOINT ["bash", "./lazyrecon.sh"]

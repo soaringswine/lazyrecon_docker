@@ -1,0 +1,8 @@
+version: '3'
+services:
+    lazyrecon:
+        build: .
+        container_name: lazyrecon
+        image: lazyrecon:latest
+        volumes:
+         - ./lazyrecon_results/:/home/lazyrecon_user/tools/lazyrecon/
