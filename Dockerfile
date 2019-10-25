@@ -55,8 +55,10 @@ RUN set -x \
     && git clone https://github.com/aboul3la/Sublist3r.git \
     && git clone https://github.com/maurosoria/dirsearch.git \
     && git clone https://github.com/blechschmidt/massdns.git \
-    && git clone https://github.com/soaringswine/lazyrecon.git \
     && pip3 install dnsgen
+WORKDIR $TOOLS/lazyrecon
+RUN set -x \
+    && wget https://raw.githubusercontent.com/soaringswine/lazyrecon_docker/master/lazyrecon.sh
 WORKDIR $TOOLS/Sublist3r
 RUN set -x \
     && pip install -r requirements.txt
