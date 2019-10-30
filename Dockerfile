@@ -74,12 +74,10 @@ COPY --from=build /go/bin/amass /bin/amass
 COPY --from=build /go/bin/aquatone /bin/aquatone
 COPY --from=build /go/bin/httprobe /bin/httprobe
 COPY --from=build /go/bin/waybackurls /bin/waybackurls
-ENV UID="1000"
-ENV GID="1000"
-# Change home directory permissions and fix TLDextract caching permission error.
+# Change home directory ownership and fix TLDextract caching permission error.
 RUN set -x \
-    && chown -R ${UID}:${GID} $HOME \
-    && chown -R ${UID}:${GID} /usr/local/lib/python3.6/dist-packages/tldextract/
+    && chown -R lazyrecon_user:lazyrecon_user $HOME \
+    && chown -R lazyrecon_user:lazyrecon_user /usr/local/lib/python3.6/dist-packages/tldextract/
 USER lazyrecon_user
 #ENTRYPOINT [ "/bin/bash" ]
 WORKDIR $TOOLS/lazyrecon
