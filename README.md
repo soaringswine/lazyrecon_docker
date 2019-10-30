@@ -5,8 +5,9 @@ I'm sure I can optimize the build process and I'm willing to bet I'm not followi
 
 # How to run
 1) Clone the repo
-2) docker build -t lazyrecon .
-3) docker run -v lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/ lazyrecon -d DOMAIN.TLD
+2) docker build --rm -f "Dockerfile" -t lazyrecon_docker:latest .
+3) docker run -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ lazyrecon_docker -d DOMAIN.TLD
+4) Results will be stored in ./lazyrecon_results on Docker host
 4) ???
 5) Hopefully profit?!
 
