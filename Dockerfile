@@ -11,6 +11,7 @@ FROM ubuntu:18.04
 LABEL maintainer soaringswine
 ENV HOME="/home/lazyrecon_user"
 ENV TOOLS="$HOME/tools"
+ENV TERM="xterm-256color"
 RUN set -x \
     && apt-get -y update \
     && apt-get install -y --no-install-recommends --no-install-suggests \
