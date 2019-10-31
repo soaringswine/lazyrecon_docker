@@ -3,6 +3,7 @@ RUN go get github.com/michenriksen/aquatone; exit 0
 RUN go get -u github.com/tomnomnom/httprobe; exit 0
 RUN go get github.com/tomnomnom/waybackurls; exit 0
 RUN go get github.com/OWASP/Amass; exit 0
+RUN go get -u github.com/tomnomnom/unfurl; exit 0
 ENV GO111MODULE on
 WORKDIR /go/src/github.com/OWASP/Amass
 RUN go install ./...
@@ -42,6 +43,7 @@ RUN set -x \
         curl \
         chromium-browser \
         locales \
+        dnsutils \
     && apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/{apt,dpkg,cache,log}/ \
@@ -74,6 +76,7 @@ COPY --from=build /go/bin/amass /bin/amass
 COPY --from=build /go/bin/aquatone /bin/aquatone
 COPY --from=build /go/bin/httprobe /bin/httprobe
 COPY --from=build /go/bin/waybackurls /bin/waybackurls
+COPY --from=build /go/bin/unfurl /bin/unfurl
 # Change home directory ownership and fix TLDextract caching permission error.
 RUN set -x \
     && chown -R lazyrecon_user:lazyrecon_user $HOME \
