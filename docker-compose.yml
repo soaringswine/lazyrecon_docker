@@ -4,5 +4,6 @@ services:
         build: .
         container_name: lazyrecon_docker
         image: lazyrecon_docker:latest
+        user: ${UID}:${GID}
         volumes:
          - ./lazyrecon_results/:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/

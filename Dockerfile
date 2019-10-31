@@ -90,9 +90,8 @@ RUN set -x \
     && chown root:root /usr/local/bin/fixuid \
     && chmod 4755 /usr/local/bin/fixuid \
     && mkdir -p /etc/fixuid \
-    && printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
+    && printf "user: $USER\ngroup: $GROUP\npaths: \n - /\n - $TOOLS/lazyrecon/lazyrecon_results\n" > /etc/fixuid/config.yml
 USER lazyrecon_user:lazyrecon_user
-ENTRYPOINT ["fixuid"]
-#ENTRYPOINT [ "/bin/bash" ]
+#ENTRYPOINT ["fixuid", "/bin/bash"]
 WORKDIR $TOOLS/lazyrecon
-ENTRYPOINT ["bash", "./lazyrecon.sh"]
+ENTRYPOINT ["fixuid", "bash", "./lazyrecon.sh"]
