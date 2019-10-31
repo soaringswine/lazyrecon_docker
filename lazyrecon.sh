@@ -134,7 +134,7 @@ recon(){
 dirsearcher(){
 
 echo "Starting Dirsearch..." 
-cat $output_directory/$domain/$foldername/urllist.txt | xargs -P$subdomainThreads -I % sh -c "python3 $HOME/tools/dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w $dirsearchWordlist -t $dirsearchThreads -u % | grep Target && tput sgr0 && ./lazyrecon.sh -r $domain -r $foldername -r %"
+cat $output_directory/$domain/$foldername/urllist.txt | xargs -P$subdomainThreads -I % sh -c "python3 $HOME/tools/dirsearch/dirsearch.py -e php,asp,aspx,jsp,html,zip,jar -w $dirsearchWordlist -t $dirsearchThreads -u % | grep Target && tput sgr0 && bash ./lazyrecon.sh -r $output_directory -r $domain -r $foldername -r %"
 }
 
 aqua(){
@@ -458,10 +458,11 @@ cleantemp(){
 }
 main(){
 if [ -z "${domain}" ]; then
-domain=${subreport[1]}
-foldername=${subreport[2]}
-subd=${subreport[3]}
-report $domain $subdomain $foldername $subd; exit 1;
+output_directory=${subreport[1]}
+domain=${subreport[2]}
+foldername=${subreport[3]}
+subd=${subreport[4]}
+report $output_directory $domain $subdomain $foldername $subd; exit 1;
 fi
   clear
   logo
