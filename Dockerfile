@@ -49,7 +49,8 @@ RUN set -x \
 	&& rm -rf /var/lib/{apt,dpkg,cache,log}/ \
     && ulimit -n 2048 \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && useradd -m lazyrecon_user
+    && addgroup --gid 1000 lazyrecon_user \
+    && adduser --uid 1000 --ingroup lazyrecon_user --home /home/lazyrecon_user --shell /bin/bash --disabled-password --gecos "" lazyrecon_user
 ENV LC_ALL="en_US.UTF-8"
 ENV LANG="en_US.UTF-8"
 ENV LANGUAGE="en_US.UTF-8"
@@ -81,7 +82,17 @@ COPY --from=build /go/bin/unfurl /bin/unfurl
 RUN set -x \
     && chown -R lazyrecon_user:lazyrecon_user $HOME \
     && chown -R lazyrecon_user:lazyrecon_user /usr/local/lib/python3.6/dist-packages/tldextract/
-USER lazyrecon_user
+# Using fixuid to fix bind mount permission issues.
+RUN set -x \
+    && USER=lazyrecon_user \
+    && GROUP=lazyrecon_user \
+    && curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.4/fixuid-0.4-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - \
+    && chown root:root /usr/local/bin/fixuid \
+    && chmod 4755 /usr/local/bin/fixuid \
+    && mkdir -p /etc/fixuid \
+    && printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
+USER lazyrecon_user:lazyrecon_user
+ENTRYPOINT ["fixuid"]
 #ENTRYPOINT [ "/bin/bash" ]
 WORKDIR $TOOLS/lazyrecon
 ENTRYPOINT ["bash", "./lazyrecon.sh"]
