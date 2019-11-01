@@ -78,13 +78,13 @@ cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -
 cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.js(\?|$)" | sort -u > $output_directory/$domain/$foldername/wayback-data/jsurls.txt
 [ -s $output_directory/$domain/$foldername/wayback-data/jsurls.txt ] && echo "JS URLs saved to /$domain/$foldername/wayback-data/jsurls.txt" 
 
-cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.php(\?|$) | sort -u " > $output_directory/$domain/$foldername/wayback-data/phpurls.txt
+cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.php(\?|$)" | sort -u > $output_directory/$domain/$foldername/wayback-data/phpurls.txt
 [ -s $output_directory/$domain/$foldername/wayback-data/phpurls.txt ] && echo "PHP URLs saved to /$domain/$foldername/wayback-data/phpurls.txt" 
 
-cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.aspx(\?|$) | sort -u " > $output_directory/$domain/$foldername/wayback-data/aspxurls.txt
+cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.aspx(\?|$)" | sort -u > $output_directory/$domain/$foldername/wayback-data/aspxurls.txt
 [ -s $output_directory/$domain/$foldername/wayback-data/aspxurls.txt ] && echo "ASP URLs saved to /$domain/$foldername/wayback-data/aspxurls.txt" 
 
-cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.jsp(\?|$) | sort -u " > $output_directory/$domain/$foldername/wayback-data/jspurls.txt
+cat $output_directory/$domain/$foldername/wayback-data/waybackurls.txt  | sort -u | grep -P "\w+\.jsp(\?|$)" | sort -u > $output_directory/$domain/$foldername/wayback-data/jspurls.txt
 [ -s $output_directory/$domain/$foldername/wayback-data/jspurls.txt ] && echo "JSP URLs saved to /$domain/$foldername/wayback-data/jspurls.txt" 
 }
 
