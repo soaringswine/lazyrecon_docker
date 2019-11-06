@@ -115,7 +115,7 @@ recon(){
 
   echo "${green}Recon started on $domain ${reset}"
   echo "Finding subdomains using Sublist3r..."
-  python $HOME/tools/Sublist3r/sublist3r.py -d $domain -t 10 -v -o $outputDirectory/$domain/$foldername/$domain.txt > /dev/null
+  python $HOME/tools/Sublist3r/sublist3r.py -b -d $domain -t 10 -v -o $outputDirectory/$domain/$foldername/$domain.txt > /dev/null
   echo "Finding subdomains using Amass..."
   amass enum -active -brute -d $domain >> $outputDirectory/$domain/$foldername/$domain.txt
   echo "$(cat $outputDirectory/$domain/$foldername/$domain.txt | sort -u | grep $domain)" > $outputDirectory/$domain/$foldername/$domain.txt
