@@ -95,7 +95,7 @@ RUN set -x \
 USER lazyrecon_user:lazyrecon_user
 # Fix Chromium working with Aquatone in Docker. Chromium now runs without a sandbox, but since we're in a container, it's an ok trade-off.
 RUN set -x \
-    && printf 'CHROMIUM_FLAGS="--no-sandbox"\n' > $HOME/.chromium-browser.init
+    && printf 'CHROMIUM_FLAGS="--no-sandbox --headless"\n' > $HOME/.chromium-browser.init
 #ENTRYPOINT ["fixuid", "/bin/bash"]
 WORKDIR $TOOLS/lazyrecon
 ENTRYPOINT ["fixuid", "bash", "./lazyrecon.sh"]

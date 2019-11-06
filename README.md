@@ -1,12 +1,12 @@
 # lazyrecon_docker
 Containerized version of my fork of Nahamsec's Lazyrecon.
 
-I'm sure I can optimize the build process and I'm willing to bet I'm not following best practices. I also still need to work out the volume mount and see if its a permission problem or if its because I have a .gitignore in the lazyrecon_results folder and Docker doesn't know how to handle a non-empty folder or if it's because of all my RUN statements in the build process that happen before the volume mount.
+I'm sure I can optimize the build process and I'm willing to bet I'm not following best practices.
 
 # How to run
 1) Clone the repo
 2) docker build --rm -f "Dockerfile" -t lazyrecon_docker:latest .
-3) docker run -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ lazyrecon_docker -d DOMAIN.TLD
+3) docker run --user $(id -u):$(id -g) -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ lazyrecon_docker -d DOMAIN.TLD
 4) Results will be stored in ./lazyrecon_results on Docker host
 4) ???
 5) Hopefully profit?!
