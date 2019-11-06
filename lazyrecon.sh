@@ -326,7 +326,7 @@ done
 echo "</pre>" >> $outputDirectory/$domain/$foldername/reports/$subdomain.html
 echo "<h2>Nmap Results</h2>
 <pre>
-$(nmap -A -T3 -Pn -p$nmapPorts $subdomain)
+$(nmap -A -T3 -Pn -p$nmapPorts $subdomain -oA $outputDirectory/$domain/$foldername/nmap_results/$subdomain)
 </pre>
 </div></article></div>
 </div></div></body></html>" >> $outputDirectory/$domain/$foldername/reports/$subdomain.html
@@ -426,7 +426,7 @@ $(host $domain)
 
 echo "<h2>Nmap Results</h2>
 <pre>
-$(nmap -A -T3 -Pn -p$nmapPorts $domain)
+$(nmap -A -T3 -Pn -p$nmapPorts $domain -oA $outputDirectory/$domain/$foldername/nmap_results/$domain)
 </pre>
 </div></article></div>
 </div></div></body></html>" >> $outputDirectory/$domain/$foldername/master_report.html
@@ -477,11 +477,12 @@ fi
   fi
 
   mkdir $outputDirectory/$domain/$foldername
-  mkdir $outputDirectory/$domain/$foldername/aqua_out
-  mkdir $outputDirectory/$domain/$foldername/aqua_out/parsedjson
+  mkdir $outputDirectory/$domain/$foldername/aqua_out/
+  mkdir $outputDirectory/$domain/$foldername/aqua_out/parsedjson/
   mkdir $outputDirectory/$domain/$foldername/reports/
   mkdir $outputDirectory/$domain/$foldername/wayback-data/
   mkdir $outputDirectory/$domain/$foldername/screenshots/
+  mkdir $outputDirectory/$domain/$foldername/nmap_results/
   touch $outputDirectory/$domain/$foldername/crtsh.txt
   touch $outputDirectory/$domain/$foldername/mass.txt
   touch $outputDirectory/$domain/$foldername/cnames.txt
