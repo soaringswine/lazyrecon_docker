@@ -140,7 +140,7 @@ cat $output_directory/$domain/$foldername/urllist.txt | xargs -P$subdomainThread
 aqua(){
 
 echo "Starting Aquatone scan..."
-cat $output_directory/$domain/$foldername/urllist.txt | aquatone -out $output_directory/$domain/$foldername/aqua_out -threads $aquatoneThreads -silent
+cat $output_directory/$domain/$foldername/urllist.txt | aquatone -out $output_directory/$domain/$foldername/aqua_out -threads $aquatoneThreads -silent -scan-timeout 900
 
 
 }
