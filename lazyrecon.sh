@@ -296,12 +296,12 @@ echo '<div class="row">
 Port 80' >> $output_directory/$domain/$foldername/reports/$subdomain.html
 scpath=$(echo "$subdomain" | sed 's/\./_/g')
 httpsc=$(ls $output_directory/$domain/$foldername/aqua_out/screenshots/http__$scpath*  2>/dev/null)
-echo "<a href=\"../../../$httpsc\"><img/src=\"../../../$httpsc\"></a> " >> $output_directory/$domain/$foldername/reports/$subdomain.html
+echo "<a href=\"../../../../$httpsc\"><img/src=\"../../../../$httpsc\"></a> " >> $output_directory/$domain/$foldername/reports/$subdomain.html
 echo '</div>
   <div class="column">
 Port 443' >> $output_directory/$domain/$foldername/reports/$subdomain.html
 httpssc=$(ls $output_directory/$domain/$foldername/aqua_out/screenshots/https__$scpath*  2>/dev/null)
-echo "<a href=\"../../../$httpssc\"><img/src=\"../../../$httpssc\"></a>" >> $output_directory/$domain/$foldername/reports/$subdomain.html
+echo "<a href=\"../../../../$httpssc\"><img/src=\"../../../../$httpssc\"></a>" >> $output_directory/$domain/$foldername/reports/$subdomain.html
 echo "</div></div></pre>" >> $output_directory/$domain/$foldername/reports/$subdomain.html
 #echo "<h2>Dig Info</h2><pre>$(dig $subdomain)</pre>" >> $output_directory/$domain/$foldername/reports/$subdomain.html
 echo "<h2>Host Info</h2><pre>$(host $subdomain)</pre>" >> $output_directory/$domain/$foldername/reports/$subdomain.html
