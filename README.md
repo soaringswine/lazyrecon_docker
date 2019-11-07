@@ -5,6 +5,7 @@ I'm sure I can optimize the build process and I'm willing to bet I'm not followi
 
 # How to run
 ```
+Build locally:
 1) git clone https://github.com/soaringswine/lazyrecon_docker.git
 2) cd lazyrecon_docker
 3) docker build --rm -f "Dockerfile" -t lazyrecon_docker:latest .
@@ -12,6 +13,13 @@ I'm sure I can optimize the build process and I'm willing to bet I'm not followi
 5) Results will be stored in ./lazyrecon_results on Docker host
 6) ???
 7) Hopefully profit?!
+
+From Dockerhub:
+1) pull soaringswine/lazyrecon_docker
+2) docker run --user $(id -u):$(id -g) -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ soaringswine/lazyrecon_docker -d DOMAIN.TLD
+3) Results will be stored in ./lazyrecon_results on Docker host
+4) ???
+5) Hopefully profit (but faster)?!
 ```
 
 # soaringswine's Lazyrecon fork
