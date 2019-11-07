@@ -4,16 +4,18 @@ Containerized version of my fork of Nahamsec's Lazyrecon.
 I'm sure I can optimize the build process and I'm willing to bet I'm not following best practices.
 
 # How to run
-1) Clone the repo
-2) docker build --rm -f "Dockerfile" -t lazyrecon_docker:latest .
-3) docker run --user $(id -u):$(id -g) -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ lazyrecon_docker -d DOMAIN.TLD
-4) Results will be stored in ./lazyrecon_results on Docker host
-4) ???
-5) Hopefully profit?!
-
+```
+1) git clone https://github.com/soaringswine/lazyrecon_docker.git
+2) cd lazyrecon_docker
+3) docker build --rm -f "Dockerfile" -t lazyrecon_docker:latest .
+4) docker run --user $(id -u):$(id -g) -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ lazyrecon_docker -d DOMAIN.TLD
+5) Results will be stored in ./lazyrecon_results on Docker host
+6) ???
+7) Hopefully profit?!
+```
 
 # soaringswine's Lazyrecon fork
-soaringswine: I've added amass and dnsgen into the mix and there was some issues with how cat and sort were being used that would leave the $domain.txt file blank, so I fixed those. Also removed one of the $domain.txt cats that was undoing the wildcard dupe pruning and added some echos to help understand what's going on in different stages.
+soaringswine: I've added amass, Project Sonar (old data but someone graciously is hosting a script to let you query it nicely!), and dnsgen into the mix and expanded the nmap and Aquatone port scanning. There were some issues with how cat and sort were being used that would leave the $domain.txt file blank, so I fixed those. Also removed one of the $domain.txt cats that was undoing the wildcard dupe pruning and added some echos to help understand what's going on in different stages. Fixed some other misc. things and tidied up the code a tad.
 
 ```
   _     ____  ____ ___  _ ____  _____ ____ ____  _
