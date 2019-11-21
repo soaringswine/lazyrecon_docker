@@ -71,11 +71,11 @@ RUN set -x \
 WORKDIR $TOOLS/massdns
 RUN set -x \
     && make
-WORKDIR $TOOLS/SecLists/Discovery/DNS/
 WORKDIR $TOOLS/pdlist
 RUN set -x \
     && pip3 install -r requirements.txt \
     && python3 setup.py install
+WORKDIR $TOOLS/SecLists/Discovery/DNS/
 RUN set -x \
     && wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/dns-Jhaddix.txt \
     && cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
