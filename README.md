@@ -15,7 +15,7 @@ Build locally:
 7) Hopefully profit?!
 
 From Dockerhub:
-1) pull soaringswine/lazyrecon_docker
+1) docker pull soaringswine/lazyrecon_docker
 2) docker run --user $(id -u):$(id -g) -v $(pwd)/lazyrecon_results:/home/lazyrecon_user/tools/lazyrecon/lazyrecon_results/ soaringswine/lazyrecon_docker -d DOMAIN.TLD
 3) Results will be stored in ./lazyrecon_results on Docker host
 4) ???
