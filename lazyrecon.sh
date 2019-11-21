@@ -123,6 +123,9 @@ recon(){
   curl -s "https://api.certspotter.com/v1/issuances?domain=$domain&include_subdomains=true&expand=dns_names" | jq '.[].dns_names[]' | sed 's/\"//g' | sed 's/\*\.//g' | sort -u | grep $domain >> $outputDirectory/$domain/$foldername/$domain.txt
   echo "Finding domains using (old) Project Sonar data script hosted by erbbysam.com (thx m8).."
   curl -s "https://dns.bufferover.run/dns?q=$domain" 2> /dev/null | jq -r '.FDNS_A,.RDNS | .[]' | sed 's/\*\.//g' | cut -d ',' -f2 | grep -F ".$domain" | sort -u >> $outputDirectory/$domain/$foldername/$domain.txt
+  echo "Finding domains passively with pdlist.."
+  pdlist $domain --strict -o $outputDirectory/$domain/$foldername/pdlist.txt
+  echo "$(cat $outputDirectory/$domain/$foldername/$domain.txt $outputDirectory/$domain/$foldername/pdlist.txt | sort -u | grep $domain)" > $outputDirectory/$domain/$foldername/$domain.txt
   echo "Running DNSgen for new possible domain name combinations.."
   dnsgen $outputDirectory/$domain/$foldername/$domain.txt > $outputDirectory/$domain/$foldername/dnsgen.txt
   echo "$(cat $outputDirectory/$domain/$foldername/$domain.txt $outputDirectory/$domain/$foldername/dnsgen.txt | sort -u | grep $domain)" > $outputDirectory/$domain/$foldername/$domain.txt

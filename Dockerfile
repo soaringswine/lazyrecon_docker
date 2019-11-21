@@ -60,6 +60,7 @@ RUN set -x \
     && git clone https://github.com/aboul3la/Sublist3r.git \
     && git clone https://github.com/maurosoria/dirsearch.git \
     && git clone https://github.com/blechschmidt/massdns.git \
+    && git clone https://github.com/gnebbia/pdlist \
     && pip3 install dnsgen
 WORKDIR $TOOLS/lazyrecon
 RUN set -x \
@@ -71,6 +72,10 @@ WORKDIR $TOOLS/massdns
 RUN set -x \
     && make
 WORKDIR $TOOLS/SecLists/Discovery/DNS/
+WORKDIR $TOOLS/pdlist
+RUN set -x \
+    && pip3 install -r requirements.txt \
+    && python3 setup.py install
 RUN set -x \
     && wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/DNS/dns-Jhaddix.txt \
     && cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
