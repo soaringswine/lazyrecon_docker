@@ -23,7 +23,7 @@ From Dockerhub:
 ```
 
 # soaringswine's Lazyrecon fork
-soaringswine: I've added amass, Project Sonar (old data but someone graciously is hosting a script to let you query it nicely!), and dnsgen into the mix and expanded the nmap and Aquatone port scanning. There were some issues with how cat and sort were being used that would leave the $domain.txt file blank, so I fixed those. Also removed one of the $domain.txt cats that was undoing the wildcard dupe pruning and added some echos to help understand what's going on in different stages. Fixed some other misc. things and tidied up the code a tad.
+soaringswine: I've added amass, Project Sonar (old data but someone graciously is hosting a script to let you query it nicely!), pdlist, and dnsgen into the mix and expanded the nmap and Aquatone port scanning. There were some issues with how cat and sort were being used that would leave the $domain.txt file blank, so I fixed those. Also removed one of the $domain.txt cats that was undoing the wildcard dupe pruning and added some echos to help understand what's going on in different stages. Fixed some other misc. things and tidied up the code a tad.
 
 ```
   _     ____  ____ ___  _ ____  _____ ____ ____  _
