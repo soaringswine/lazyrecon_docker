@@ -8,7 +8,7 @@ ENV GO111MODULE on
 WORKDIR /go/src/github.com/OWASP/Amass
 RUN go install ./...
 
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 LABEL maintainer soaringswine
 ENV HOME="/home/lazyrecon_user"
 ENV TOOLS="$HOME/tools"
