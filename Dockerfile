@@ -1,4 +1,4 @@
-FROM golang:1.13.1-buster AS build
+FROM golang:1.20.3-buster AS build
 RUN go get github.com/michenriksen/aquatone; exit 0
 RUN go get -u github.com/tomnomnom/httprobe; exit 0
 RUN go get github.com/tomnomnom/waybackurls; exit 0
