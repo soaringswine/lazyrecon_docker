@@ -471,7 +471,9 @@ outputDirectory=${subreport[1]}
 domain=${subreport[2]}
 foldername=${subreport[3]}
 subd=${subreport[4]}
-report $outputDirectory $domain $subdomain $foldername $subd; exit 1;
+# generate single host report when invoked with -r options
+report
+exit 0
 fi
   clear
   logo
