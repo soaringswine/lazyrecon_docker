@@ -87,7 +87,7 @@ This tool allows you to gather some information that should help you identify wh
 
 
 # Authors and Thanks
-This script makes use of tools developped by the following people
+This script makes use of tools developed by the following people
 - [Tom Hudson - Tomonomnom](https://github.com/tomnomnom)
 - [Ahmed Aboul-Ela - Aboul3la](https://github.com/aboul3la)
 - [B. Blechschmidt - Blechschmidt](https://github.com/blechschmidt)
@@ -98,6 +98,9 @@ This script makes use of tools developped by the following people
 # TO DO
 - Report only mode to generate reports for old dirsearch data
 - SubDomain exclusion
+
+## Running tests
+Run `bash tests/run_no_args.sh` to verify that `run.sh` handles missing arguments correctly.
 
 
 

@@ -410,7 +410,7 @@ cat $outputDirectory/$domain/$foldername/pos.txt >> $outputDirectory/$domain/$fo
 echo "</pre><div><h2>Wayback data</h2></div>" >> $outputDirectory/$domain/$foldername/master_report.html
 echo "<table><tbody>" >> $outputDirectory/$domain/$foldername/master_report.html
 [ -s $outputDirectory/$domain/$foldername/wayback-data/paramlist.txt ] && echo "<tr><td><a href='./wayback-data/paramlist.txt'>Params wordlist</a></td></tr>" >> $outputDirectory/$domain/$foldername/master_report.html
-[ -s $outputDirectory/$domain/$foldername/wayback-data/jsurls.txt ] && echo "<tr><td><a href='./wayback-data/jsurls.txt'>Javscript files</a></td></tr>" >> $outputDirectory/$domain/$foldername/master_report.html
+[ -s $outputDirectory/$domain/$foldername/wayback-data/jsurls.txt ] && echo "<tr><td><a href='./wayback-data/jsurls.txt'>JavaScript files</a></td></tr>" >> $outputDirectory/$domain/$foldername/master_report.html
 [ -s $outputDirectory/$domain/$foldername/wayback-data/phpurls.txt ] && echo "<tr><td><a href='./wayback-data/phpurls.txt'>PHP Urls</a></td></tr>" >> $outputDirectory/$domain/$foldername/master_report.html
 [ -s $outputDirectory/$domain/$foldername/wayback-data/aspxurls.txt ] && echo "<tr><td><a href='./wayback-data/aspxurls.txt'>ASP Urls</a></td></tr>" >> $outputDirectory/$domain/$foldername/master_report.html
 echo "</tbody></table></div>" >> $outputDirectory/$domain/$foldername/master_report.html
