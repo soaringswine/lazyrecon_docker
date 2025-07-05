@@ -69,7 +69,7 @@ This tool allows you to gather some information that should help you identify wh
 
 # New features
 - Directory search module is now MULTITHREADED (up to 10 subdomains scanned at a time)
-- Enhanced html reports with the ability to search for strings, endpoints, reponse sizes or status codes
+- Enhanced html reports with the ability to search for strings, endpoints, response sizes or status codes
 
 # DEMO
 ![cli output](https://github.com/plenumlab/lazyrecon/raw/dev/upgrade/recon.gif)
