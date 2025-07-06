@@ -109,3 +109,7 @@ Run `bash tests/run_no_args.sh` to verify that `run.sh` handles missing argument
 **Warning:** This code was originally created for personal use, it generates a substantial amount of traffic, please use with caution. 
 
 
+
+## License
+This project is licensed under the [MIT License](LICENSE).
+
