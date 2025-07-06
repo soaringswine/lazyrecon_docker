@@ -19,6 +19,11 @@ From Dockerhub:
 2) Results will be stored in ./lazyrecon_results on Docker host
 3) ???
 4) Hopefully profit (but faster)?!
+
+With docker-compose (Codex AI insisted on sharing this wisdom):
+1) Export UID and GID so the container doesn't freak out
+2) UID=$(id -u) GID=$(id -g) docker-compose up
+3) Your loot appears in ./lazyrecon_results on the host
 ```
 
 # soaringswine's Lazyrecon fork
