@@ -1,0 +1,25 @@
+# Ignore version control and CI configs
+.git
+.github
+
+# Ignore temporary results
+lazyrecon_results/
+
+# Ignore local development dirs
+.vscode/
+
+# Ignore tests
+tests/
+
+# Ignore Windows helper scripts and large media files
+run.bat
+recon.gif
+report.gif
+
+# Ignore OS generated files
+.DS_Store
+__pycache__/
+*.pyc
+
+# Ignore all GIFs
+*.gif
