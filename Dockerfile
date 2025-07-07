@@ -54,9 +54,9 @@ RUN set -x \
         ca-certificates \
     && update-ca-certificates \
     && apt-get clean autoclean \
-        && apt-get autoremove -y \
-        && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
-    && ulimit -n 2048 \
+  	&& apt-get autoremove -y \
+	  && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+    && ( ulimit -n 2048 || true ) \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 RUN set -x \
     && addgroup --gid 1000 lazyrecon_user \
