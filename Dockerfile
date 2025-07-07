@@ -1,4 +1,8 @@
 FROM golang:1.13.1-buster AS build
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends git ca-certificates \
+    && update-ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 RUN go get github.com/michenriksen/aquatone; exit 0
 RUN go get -u github.com/tomnomnom/httprobe; exit 0
 RUN go get github.com/tomnomnom/waybackurls; exit 0
@@ -47,9 +51,11 @@ RUN set -x \
         chromium-browser \
         locales \
         dnsutils \
+        ca-certificates \
+    && update-ca-certificates \
     && apt-get clean autoclean \
-	&& apt-get autoremove -y \
-	&& rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+  	&& apt-get autoremove -y \
+	  && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
     && ( ulimit -n 2048 || true ) \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 RUN set -x \
